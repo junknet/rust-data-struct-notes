@@ -76,6 +76,7 @@ impl SkipList {
                 }
                 for level in (0..=start_level).rev() {
                     loop {
+                        //  循环结构必须保证变量 refcount>0 ,否则被第二轮借用检查当做直接析构
                         let next = node.clone();
                         match next.borrow().next[level] {
                             Some(ref tmp) => {
@@ -96,6 +97,31 @@ impl SkipList {
                 result
             }
             None => None,
+        }
+    }
+    fn level_path(&self) {
+        match self.head {
+            Some(ref head) => {
+                for level in (0..self.max_level).rev() {
+                    let mut point = head.clone();
+                    print!("level:{}", level);
+                    loop {
+                        print!(
+                            "offset:{},data:{}\t",
+                            point.borrow().offset,
+                            point.borrow().data
+                        );
+                        match point.clone().borrow().next[level] {
+                            Some(ref tmp) => {
+                                point = tmp.clone();
+                            }
+                            None => break,
+                        };
+                    }
+                    println!()
+                }
+            }
+            None => {}
         }
     }
 }
