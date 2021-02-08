@@ -5,5 +5,5 @@ authors = ["junknet <beini87@outlook.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+rand = "*"
