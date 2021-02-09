@@ -1,2 +1,2 @@
 [workspace]
-members = ["skip-list"]
+members = ["skip-list", "tree-struct"]
