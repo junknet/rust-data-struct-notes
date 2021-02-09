@@ -70,11 +70,11 @@ impl DeviceRegistry {
         }
     }
 
-    fn walk(&self, callback: impl Fn(&IoTDevice) -> ()) {
+    pub fn walk(&self, callback: impl Fn(&IoTDevice) -> ()) {
         self.walk_in_order(&self.root, &callback);
     }
 
-    pub fn walk_in_order(&self, node: &Tree, callback: &impl Fn(&IoTDevice) -> ()) {
+    fn walk_in_order(&self, node: &Tree, callback: &impl Fn(&IoTDevice) -> ()) {
         if let Some(n) = node {
             self.walk_in_order(&n.left, callback);
             callback(&n.dev);

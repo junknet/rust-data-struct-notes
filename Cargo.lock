@@ -79,6 +79,9 @@ dependencies = [
 [[package]]
 name = "tree-struct"
 version = "0.1.0"
+dependencies = [
+ "rand",
+]
 
 [[package]]
 name = "wasi"
